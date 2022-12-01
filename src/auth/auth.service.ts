@@ -8,6 +8,7 @@ export class AuthService {
   constructor(private readonly httpService: HttpService) { }
 
   async handleAuth(authDTO: AuthDto) {
+    //TODO: add consent artifact processin
     try {
       const requestOptions = {
         headers: {
@@ -18,7 +19,7 @@ export class AuthService {
       const responseData = await lastValueFrom(
         this.httpService
           .post(
-            'LINK_TO_AUTHORIZATION_SERVICE',
+            process.env.LINK_TO_AUTHORIZATION_SERVICE,
             { consentArtifact: authDTO.consentArtifact, gql: authDTO.gql },
             requestOptions,
           )
